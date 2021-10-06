@@ -1,3 +1,16 @@
+```bash
+컨트롤러 추가
+
+$ nest g controller user
+
+
+참고중
+https://github.com/lujakob/nestjs-realworld-example-app/tree/master/src/user
+```
+
+
+
+
 <p align="center">
   <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo_text.svg" width="320" alt="Nest Logo" /></a>
 </p>
