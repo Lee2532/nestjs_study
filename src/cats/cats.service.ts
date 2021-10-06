@@ -19,9 +19,8 @@ export class CatsService {
     return this.catModel.find().exec();
   }
 
-  async findOne(): Promise<any[]> {
-    return this.catModel.find().exec();
-    // return this.catModel.findOne({name?:string}).exec();
+  async findOne(id:string): Promise<Cat> {
+    return this.catModel.findOne({id:id});
   }
 
 }

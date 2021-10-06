@@ -17,13 +17,11 @@ export class CatsController {
     return this.catsService.findAll();
   }
 
-  @Get(':name')
-  async findOne(@Param() params): Promise<any[]> {
-    console.log(params.name)
-    return this.catsService.findOne();
-    // return `this cat is ${params.name} cat`;
-
+  @Get(':id')
+  async findOne(@Param('id') id: string): Promise<Cat> {
+    return this.catsService.findOne(id);
   }
+
 }
 
 
