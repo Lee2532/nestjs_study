@@ -7,7 +7,7 @@ import { UserController } from './user/user.controller';
 
 @Module({
   imports: [
-    MongooseModule.forRoot('mongodb://localhost:27017/test'),
+    MongooseModule.forRoot('mongodb://host.docker.internal:27017/test'),
     TypeOrmModule.forRoot(),
     CatsModule,
   ],
