@@ -1,5 +1,5 @@
 ```bash
-컨트롤러 추가
+컨트롤러 추가 명령어
 
 $ nest g controller user
 
