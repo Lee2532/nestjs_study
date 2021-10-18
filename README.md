@@ -3,9 +3,12 @@
 
 $ nest g controller user
 
+추후 세팅에서 os에 맞게 host 변경하는 루직 추가하기
 
 참고중
 https://github.com/lujakob/nestjs-realworld-example-app/tree/master/src/user
+
+https://wikidocs.net/148196
 ```
 
 
