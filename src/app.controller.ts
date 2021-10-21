@@ -6,7 +6,6 @@ import { AppService } from './app.service'
 export class AppController {
   constructor(private readonly appService : AppService) {}
 
-  @Redirect('cats')
   @Get()
   getHello(@Req() req:Request): string {
     console.log(req)
