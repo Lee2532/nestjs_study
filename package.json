@@ -27,26 +27,19 @@
     "@nestjs/mongoose": "^9.0.0",
     "@nestjs/platform-express": "^8.0.0",
     "@nestjs/typeorm": "^8.0.2",
-<<<<<<< HEAD
     "config": "^3.3.6",
     "mongoose": "^6.0.8",
     "nodemailer": "^6.7.0",
-=======
     "dayjs": "^1.10.7",
-    "mongoose": "^6.0.8",
     "morgan": "^1.10.0",
->>>>>>> ef73b26efda11935fe8d75b47919683f6868e3c3
     "pg": "^8.7.1",
     "reflect-metadata": "^0.1.13",
     "rimraf": "^3.0.2",
     "rxjs": "^7.2.0",
-<<<<<<< HEAD
     "save": "^2.4.0",
-    "typeorm": "^0.2.38"
-=======
     "typeorm": "^0.2.38",
     "winston": "^3.3.3"
->>>>>>> ef73b26efda11935fe8d75b47919683f6868e3c3
+
   },
   "devDependencies": {
     "@nestjs/cli": "^8.0.0",
