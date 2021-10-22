@@ -51,6 +51,17 @@ export class UsersService {
 
   }
 
+  async userinfo():Promise<string> {
+
+    return '1'
+  }
+
+  async test(user):Promise<string> {
+    console.log(user)
+    return '1'
+  }
+
+
 
   private buildUserRO(user: UserEntity) {
     const userRO = {

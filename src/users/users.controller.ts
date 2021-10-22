@@ -1,7 +1,7 @@
-import { Body, Controller, Get, Post } from '@nestjs/common';
+import { Body, Controller, Get, Param, Post } from '@nestjs/common';
 import { CreateUserDto } from './dto/create-user.dto';
+import { UserRO } from './interfaces/users.interface';
 import { UsersService } from './users.service';
-import { Cat } from 'src/cats/schemas/cat.schema';
 
 @Controller('users')
 export class UsersController {
@@ -15,6 +15,16 @@ export class UsersController {
   @Get()
   public async findAll():Promise<string> {
     return '유저 관리 페이지'
+  }
+
+  @Get(':id')
+  async findOne(@Param('id') id:string){
+    return this.usersService.userinfo();
+  }
+
+  @Post('1')
+  async bodyTest(@Body('user') user:string){
+    return this.usersService.test(user);
   }
 
 }
