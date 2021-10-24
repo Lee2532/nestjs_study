@@ -17,9 +17,9 @@ export class UsersController {
     return '유저 관리 페이지'
   }
 
-  @Get(':id')
-  async findOne(@Param('id') id:string){
-    return this.usersService.userinfo();
+  @Post('info')
+  async findOne(@Body('user') user:string){
+    return this.usersService.userinfo(user);
   }
 
   @Post('1')

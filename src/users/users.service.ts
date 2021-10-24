@@ -27,10 +27,10 @@ export class UsersService {
 
     const user = await qb.getOne();
 
+    //cheak user where username or email
     if (user) {
       const errors = {username: 'Username and email must be unique.'};
       throw new HttpException({message: 'Input data validation failed', errors}, HttpStatus.BAD_REQUEST);
-
     }
 
     // create new user
@@ -38,7 +38,9 @@ export class UsersService {
     newUser.username = username;
     newUser.email = email;
     newUser.password = password;
-
+    newUser.uuid = uuid.v4();
+    newUser.create_date = new Date();
+    
     const errors = await validate(newUser);
     if (errors.length > 0) {
       const _errors = {username: 'Userinput is not valid.'};
@@ -51,14 +53,37 @@ export class UsersService {
 
   }
 
-  async userinfo():Promise<string> {
 
-    return '1'
+  async userinfo(user):Promise<object> {
+    let username = user.username;
+    let password = user.password;
+
+    const query = await getRepository(UserEntity)
+      .createQueryBuilder()
+      .where("username = :username", {username})
+      .andWhere("password = :password", {password})
+    
+    let result = await query.getOne();
+    console.log(result);
+    if (result == undefined) {
+      let result_data = {
+        'msg' : "아이디 또는 패스워드를 체크해주세요"
+      }
+      return result_data
+    }
+    return user
   }
 
-  async test(user):Promise<string> {
-    console.log(user)
-    return '1'
+  async test(user):Promise<object> {
+    console.log(user.username)
+    let data = {
+      "status" : 1,
+      "msg" : '유저데이터 보여주기 위한 테스트',
+      "user_info" : user,
+      "현재시간" : new Date()
+    }
+    console.log(data.msg)
+    return data
   }
 
 
@@ -67,9 +92,11 @@ export class UsersService {
     const userRO = {
       id: user.id,
       username: user.username,
+      uuid: user.uuid,
       email: user.email,
+      create_date: user.create_date,
       bio: user.bio,
-      image: user.image
+      image: user.image,
     };
 
     return {user: userRO};

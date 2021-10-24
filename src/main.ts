@@ -2,6 +2,7 @@ import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
 // import { logger } from './common/common.logger';
 import morgan from 'morgan'
+import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 
 async function bootstrap() {
   const appOptions = {
@@ -18,6 +19,15 @@ async function bootstrap() {
 
   app.use(logger('combined'))
 
+  const config = new DocumentBuilder()
+    .setTitle('Swagger API')
+    .setDescription('Swagger API description')
+    .setVersion('1.0')
+    .addTag('swagger')
+    .build();
+
+  const document = SwaggerModule.createDocument(app, config);
+  SwaggerModule.setup('api', app, document);
   await app.listen(3000);
 }
 bootstrap();
