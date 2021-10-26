@@ -1,9 +1,10 @@
-import { HttpCode, Header, Body, Controller, Get, Param, Post } from '@nestjs/common';
+import { HttpCode, Header, Body, Controller, Get, Param, Post, Res } from '@nestjs/common';
 import { CatsService } from './cats.service';
 import { CreateCatDto } from './dto/create-cat.dto';
 import { Cat } from './schemas/cat.schema';
 import { ApiTags, ApiOperation, ApiResponse } from '@nestjs/swagger';
-
+import { Render } from '@nestjs/common';
+import { Response } from 'express';
 
 @Controller('/cats')
 @ApiTags('고양이 API')
@@ -20,9 +21,16 @@ export class CatsController {
 
   @Get()
   @ApiOperation({ summary: '고양이 전체 LIST', description: '고양이 전체 정보를 가져온다' })
-  async findAll(): Promise<Cat[]> {
-    return this.catsService.findAll();
+  async root(@Res() res:Response){
+
+    return res.render(
+      "cats/create_cat",
+      {message : await this.catsService.findAll()}
+    );
   }
+  // async findAll(): Promise<Cat[]> {
+  //   return this.catsService.findAll();
+  // }
 
   @Header('test', 'testheader')
   @Get(':id')

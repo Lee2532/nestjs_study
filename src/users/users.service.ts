@@ -1,7 +1,7 @@
 import * as uuid from 'uuid';
-import { Injectable, Param } from '@nestjs/common';
+import { Injectable } from '@nestjs/common';
 import { UserEntity } from './entities/user.entity';
-import { Repository, getRepository, DeleteResult } from 'typeorm';
+import { Repository, getRepository } from 'typeorm';
 import { InjectRepository } from '@nestjs/typeorm';
 import {CreateUserDto} from './dto/create-user.dto';
 import { UserRO } from './interfaces/users.interface';
