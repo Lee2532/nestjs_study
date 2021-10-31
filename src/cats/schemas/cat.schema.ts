@@ -7,7 +7,7 @@ export type CatDocument = Cat & Document;
 export class Cat {
 
   @Prop()
-  id: number;
+  id: string;
 
 
   @Prop()

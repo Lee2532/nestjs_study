@@ -1,6 +1,6 @@
 import { ApiProperty } from '@nestjs/swagger';
 
-export class CreateUserDto {
+export class UserInfoDto {
   @ApiProperty({ 
     description: '이름',
     example: 'admin',
@@ -9,14 +9,9 @@ export class CreateUserDto {
   readonly username: string;
 
   @ApiProperty({ 
-    description: '이메일',
-    example: "admin@admin.com"    
-   })
-  readonly email: string;
-
-  @ApiProperty({ 
     description: '비밀번호',
-    example: "1234"    
+    example: "admin"    
    })  
   readonly password: string;
+
 }
