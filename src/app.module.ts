@@ -8,7 +8,7 @@ import { AppService } from './app.service';
 
 @Module({
   imports: [
-    MongooseModule.forRoot('mongodb://localhost:27017/test'),
+    MongooseModule.forRoot('mongodb://host.docker.internal:27017/test'),
     TypeOrmModule.forRoot(),
     CatsModule,
     UsersModule,

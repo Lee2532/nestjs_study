@@ -5,6 +5,7 @@ import morgan from 'morgan'
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 import { NestExpressApplication } from '@nestjs/platform-express';
 import { join } from 'path';
+import * as basicAuth from 'express-basic-auth';
 
 async function bootstrap() {
   const appOptions = {
@@ -29,12 +30,18 @@ async function bootstrap() {
   let logger = require('morgan');
 
   app.use(logger('combined'))
-
+  
   const config = new DocumentBuilder()
     .setTitle('Swagger API')
     .setDescription('Swagger API description')
     .setVersion('1.0')
     .addTag('swagger')
+    .addApiKey({
+      type: 'apiKey', // this should be apiKey
+      name: 'api-key', // this is the name of the key you expect in header
+      in: 'header',
+    },
+    ) 
     .build();
 
   const document = SwaggerModule.createDocument(app, config);
