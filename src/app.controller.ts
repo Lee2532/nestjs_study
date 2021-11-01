@@ -13,11 +13,8 @@ export class AppController {
   @Get()
   @ApiOperation({summary: 'Main Page', description: '메인 화면'})
   root(@Res() res: Response) {
-    console.log(this.appService.getHello())
-
-    return res.render(
-      this.appService.getHello(),
-      { message: "Hello world" },
-    );
+    let msg:string = "nest js with React"
+    console.log({ message: msg })
+    return res.json({ message: msg })
   }
 }

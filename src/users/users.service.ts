@@ -3,7 +3,8 @@ import { Injectable } from '@nestjs/common';
 import { UserEntity } from './entities/user.entity';
 import { Repository, getRepository } from 'typeorm';
 import { InjectRepository } from '@nestjs/typeorm';
-import {CreateUserDto} from './dto/create-user.dto';
+import { UserInfoDto } from './dto/user.user-info.dto';
+import { CreateUserDto } from './dto/user.creat-user.dto';
 import { UserRO } from './interfaces/users.interface';
 import { validate } from 'class-validator';
 import { HttpException } from '@nestjs/common/exceptions/http.exception';
@@ -17,6 +18,12 @@ export class UsersService {
     private readonly userRepository: Repository<UserEntity>
   ) {}
   
+  async findAll(): Promise<UserEntity[]> {
+    
+    return this.userRepository.find();
+  }
+
+
   async create(dto: CreateUserDto): Promise<UserRO> {
     // check uniqueness of username/email
     const {username, email, password} = dto;
@@ -69,24 +76,11 @@ export class UsersService {
       let result_data = {
         'msg' : "아이디 또는 패스워드를 체크해주세요"
       }
+  
       return result_data
     }
-    return user
+    return result
   }
-
-  async test(user):Promise<object> {
-    console.log(user.username)
-    let data = {
-      "status" : 1,
-      "msg" : '유저데이터 보여주기 위한 테스트',
-      "user_info" : user,
-      "현재시간" : new Date()
-    }
-    console.log(data.msg)
-    return data
-  }
-
-
 
   private buildUserRO(user: UserEntity) {
     const userRO = {

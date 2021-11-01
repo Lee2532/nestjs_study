@@ -3,7 +3,7 @@ import { ApiProperty } from '@nestjs/swagger';
 
 export class CreateCatDto {
   @ApiProperty({ description: 'ID' })
-  readonly id: number;
+  readonly id: string;
   @ApiProperty({ description: '이름' })
   readonly name: string;
   @ApiProperty({ description: '나이' })

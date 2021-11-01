@@ -1,9 +1,11 @@
 import { Body, Controller, Get, HttpStatus, Param, Post, Res } from '@nestjs/common';
-import { CreateUserDto } from './dto/create-user.dto';
+import { UserInfoDto } from './dto/user.user-info.dto';
+import { CreateUserDto } from './dto/user.creat-user.dto';
 import { UserRO } from './interfaces/users.interface';
 import { UsersService } from './users.service';
 import { ApiTags, ApiOperation, ApiResponse, ApiCreatedResponse } from '@nestjs/swagger';
-
+import { UserEntity } from './entities/user.entity';
+import { Response } from 'express';
 
 @Controller('users')
 @ApiTags('유저 정보 API')
@@ -18,21 +20,13 @@ export class UsersController {
 
   @Get()
   @ApiOperation({ summary: '전체 유저 정보', description: '유저 전체를 보여준다' })
-  public async findAll():Promise<string> {
-    return '유저 관리 페이지'
+  async findAll(@Res() res:Response) {
+    return res.json({userinfo : await this.usersService.findAll()});
   }
 
   @Post('info')
-  @ApiOperation({ summary: '유저 정보', description: 'ID에 해당하는 유저 정보'})
-  async findOne(@Body('user') user:string){
+  @ApiOperation({ summary: '유저 정보', description: '해당하는 유저 정보'})
+  async findOne(@Body() user:UserInfoDto){
     return this.usersService.userinfo(user);
   }
-
-  @Post('1')
-  @ApiOperation({ summary: '테스트', description: '테스트' })
-  async bodyTest(@Body('user') user:string){
-    let data:object = this.usersService.test(user);
-    return this.usersService.test(user);
-  }
-
 }

@@ -14,7 +14,6 @@ export class CatsController {
   @HttpCode(201)
   @Post()
   @ApiOperation({ summary: '고양이 정보 API', description: '고양이를 생성한다.' })
-  // @ApiCreatedResponse({ description: '유저를 생성한다.'})
   async create(@Body() createCatDto: CreateCatDto) {
     await this.catsService.create(createCatDto);
   }
@@ -22,15 +21,8 @@ export class CatsController {
   @Get()
   @ApiOperation({ summary: '고양이 전체 LIST', description: '고양이 전체 정보를 가져온다' })
   async root(@Res() res:Response){
-
-    return res.render(
-      "cats/create_cat",
-      {message : await this.catsService.findAll()}
-    );
+    return res.json({message : await this.catsService.findAll()});
   }
-  // async findAll(): Promise<Cat[]> {
-  //   return this.catsService.findAll();
-  // }
 
   @Header('test', 'testheader')
   @Get(':id')
