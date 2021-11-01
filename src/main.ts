@@ -11,12 +11,12 @@ async function bootstrap() {
   const appOptions = {
     cors:{
       origin : [
-        'http://localhost:3000',
+        'http://localhost:3300',
         'http://localhost:3001',
-        'http://127.0.0.1:3000',
+        'http://127.0.0.1:3300',
         'http://127.0.0.1:3001',
         'host.docker.internal:3001',
-        'host.docker.internal:3000'
+        'host.docker.internal:3300'
       ]
     }
   }
@@ -45,7 +45,7 @@ async function bootstrap() {
     .build();
 
   const document = SwaggerModule.createDocument(app, config);
-  SwaggerModule.setup('api', app, document); //http://localhost:3000/api
-  await app.listen(3000);
+  SwaggerModule.setup('api', app, document); //http://localhost:3300/api
+  await app.listen(3300);
 }
 bootstrap();
