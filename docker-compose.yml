@@ -3,12 +3,15 @@ version: "3"
 services:
   app:
     build: .
+    command: npm run start:dev
     container_name: nestjs
+
     ports:
       - "3300:3300"
     restart: always
     volumes:
       - ./src:/src
+      - ./node_modules:/src/app/node_modules
 
 
 volumes:
